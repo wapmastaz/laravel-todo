@@ -61,7 +61,7 @@ class todosController extends Controller
 
     public function edit($id) {
 
-        $todo = Todos::find($id);
+        $todo = Todos::findOrFail($id);
 
        return view('/todos.edit')->with('todo', $todo);
 
@@ -73,7 +73,7 @@ class todosController extends Controller
         // dd($request->all());
         $data = $request->all();
 
-        $todo = Todos::find($data['todo-id']);
+        $todo = Todos::findOrFail($data['todo-id']);
 
         $validated = $request->validate([
             'title' => 'required|max:20',
